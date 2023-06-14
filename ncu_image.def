@@ -1,0 +1,39 @@
+Bootstrap: docker
+From: centos:7
+
+%post
+# Install required dependencies
+yum -y update
+yum -y install wget sudo cmake which git
+yum -y install centos-release-scl
+
+
+# Install GCC 10.2 and related packages
+yum -y install devtoolset-10-gcc devtoolset-10-gcc-c++ devtoolset-10-gcc-gfortran
+
+# TODO: Update Drivers and CUDA links
+# Download and install NVIDIA drivers
+wget https://us.download.nvidia.com/XFree86/Linux-x86_64/525.116.04/NVIDIA-Linux-x86_64-525.116.04.run
+chmod +x NVIDIA-Linux-x86_64-525.116.04.run
+./NVIDIA-Linux-x86_64-525.116.04.run -s --no-kernel-module
+
+# Download and install CUDA 12.1
+wget https://developer.download.nvidia.com/compute/cuda/12.1.1/local_installers/cuda_12.1.1_530.30.02_linux.run
+chmod +x cuda_12.1.1_530.30.02_linux.run
+./cuda_12.1.1_530.30.02_linux.run --silent --toolkit --override
+
+# Clean up
+rm NVIDIA-Linux-x86_64-525.116.04.run cuda_12.1.1_530.30.02_linux.run
+
+%environment
+# Set environment variables for NVIDIA drivers and CUDA
+
+scl enable devtoolset-10 'echo "GCC 10.2 enabled"'
+export PATH="/opt/rh/devtoolset-10/root/bin:${PATH}"
+export PATH="/usr/local/nvidia/bin:${PATH}"
+export LD_LIBRARY_PATH="/usr/local/nvidia/lib64:${LD_LIBRARY_PATH}"
+export PATH="/usr/local/cuda-12.1/bin:${PATH}"
+export LD_LIBRARY_PATH="/usr/local/cuda-12.1/lib64:${LD_LIBRARY_PATH}"
+export FC=$(which gfortran)
+export CC=$(which gcc)
+export CXX=$(which g++)

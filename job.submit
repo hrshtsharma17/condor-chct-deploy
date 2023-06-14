@@ -1,0 +1,23 @@
+universe = vanilla
+executable = run_script_mg.sh
+transfer_executable = True
+output = output.$(PROCESS)
+error = error.$(PROCESS)
+log = log.$(PROCESS)
++WantGPULab = true
++GPUJobLength = "short"
+
+request_sudo = True
+request_gpus = 1
+request_cpus = 1
+request_memory = 2GB
+request_disk = 5GB
+
++SingularityImage = "nvidia-nsight-main.sif"
+Requirements = HasSingularity
+should_transfer_files = yes
+transfer_input_files = nvidia-nsight-main.sif
+
+
+
+queue
