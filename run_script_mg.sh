@@ -6,3 +6,4 @@ make cleanall
 make AVX=avx2 FPTYPE=d HELINL=0
 ./check.exe -p 64 256 1
 ./gcheck.exe -p 64 256 1
+sh profile.sh -nogui -p 64 128 10
