@@ -1,9 +1,9 @@
 universe = vanilla
-executable = run_script_mg.sh
+executable = rsmg.sh
 transfer_executable = True
-output = output.$(PROCESS)
-error = error.$(PROCESS)
-log = log.$(PROCESS)
+output = raw_outputs/output-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
+error = raw_errors/error-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
+log = raw_logs/log-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
 +WantGPULab = true
 +GPUJobLength = "short"
 
@@ -19,6 +19,7 @@ Requirements = GPUs_DeviceName == "NVIDIA A100-SXM4-40GB"
 should_transfer_files = yes
 transfer_input_files = nvidia-nsight-main.sif
 
-
+# Define environment variables to pass to rsmg.sh
+arguments = -v BLOCK_NUMBER=$(BLOCK_NUMBER) -v EPOCHS=$(EPOCHS) -v MAX_REG_COUNT=$(MAX_REG_COUNT)
 
 queue
