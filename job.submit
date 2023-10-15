@@ -20,6 +20,6 @@ should_transfer_files = yes
 transfer_input_files = nvidia-nsight-main.sif
 
 # Define environment variables to pass to rsmg.sh
-arguments = -v BLOCK_NUMBER=$(BLOCK_NUMBER) -v EPOCHS=$(EPOCHS) -v MAX_REG_COUNT=$(MAX_REG_COUNT)
+arguments = $(block_number) $(epochs) $(max_reg_count)
 
 queue

@@ -1,6 +1,6 @@
-MAX_REG_COUNT=256
-BLOCK_NUMBER=108
-EPOCHS=6
+BLOCK_NUMBER="$1"
+EPOCHS="$2"
+MAX_REG_COUNT="$3"
 
 echo "MAX_REG_COUNT = $MAX_REG_COUNT, Block Number = $BLOCK_NUMBER, EPOCHS = $EPOCHS"
 git clone https://github.com/madgraph5/madgraph4gpu.git
