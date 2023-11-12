@@ -1,9 +1,9 @@
 import subprocess
 
 # Define lists of values for BLOCK_NUMBER, EPOCHS, and MAX_REG_COUNT
-block_numbers = [216]
-epochs_values = [1]
-max_reg_count_values = [120]
+block_numbers = [108, 216]
+epochs_values = [1, 5, 10, 15, 20]
+max_reg_count_values = [120, 140, 160, 180, 200, 220]
 
 # Iterate over all combinations of values
 for block_number in block_numbers:

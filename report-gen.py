@@ -3,7 +3,7 @@ import csv
 import time
 
 # Define the directory where the log files are located
-log_directory = "raw_outputs"
+log_directory = "raw_outputs_multi"
 
 # Define the patterns to search for in the log files
 patterns = ["EvtsPerSec[MECalcOnly]", "MAX_REG_COUNT"]
@@ -38,7 +38,7 @@ for filename in os.listdir(log_directory):
     extracted_data.append(data)
 
 timestamp = int(time.time())
-csv_file = f"experiment-{timestamp}.csv"
+csv_file = f"experiment-multi-{timestamp}.csv"
 with open(csv_file, mode="w", newline="") as file:
     writer = csv.DictWriter(file, fieldnames=["Max Registers", "Block Number", "Epochs", "EvtsPerSec[MECalcOnly]"])
     writer.writeheader()

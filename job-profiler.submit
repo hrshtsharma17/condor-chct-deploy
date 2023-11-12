@@ -1,0 +1,25 @@
+universe = vanilla
+executable = rsmg-profiler.sh
+transfer_executable = True
+output = raw_outputs_multi/output-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)-$(Cluster).$(Process)
+error = raw_errors/error-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
+log = raw_logs/log-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
++WantGPULab = true
++GPUJobLength = "short"
+
+request_sudo = True
+request_gpus = 1
+request_cpus = 1
+request_memory = 2GB
+request_disk = 5GB
+
++SingularityImage = "nvidia-nsight-main.sif"
+Requirements = HasSingularity
+Requirements = GPUs_DeviceName == "NVIDIA A100-SXM4-40GB"
+should_transfer_files = yes
+transfer_input_files = nvidia-nsight-main.sif
+
+# Define environment variables to pass to rsmg.sh
+arguments = $(block_number) $(epochs) $(max_reg_count)
+
+queue

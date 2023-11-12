@@ -7,10 +7,9 @@ git clone https://github.com/madgraph5/madgraph4gpu.git
 cd madgraph4gpu
 export MADGRAPH4GPU_HOME=`pwd`
 cd epochX/cudacpp/gg_ttgg.sa/SubProcesses/P1_Sigma_sm_gg_ttxgg
-#sed -i "s/maxrregcount 128 /maxrregcount $MAX_REG_COUNT /" makefile
 sed -i "s/###CUFLAGS+= --maxrregcount 128/CUFLAGS+= --maxrregcount $MAX_REG_COUNT/" makefile
 sed -i 's/sudo//g' profile.sh
 cat makefile | grep "CUFLAGS+="
 make cleanall
 make AVX=avx2 FPTYPE=d HELINL=0
-./gcheck.exe -p $BLOCK_NUMBER 256 $EPOCHS
+sh profile.sh -p $BLOCK_NUMBER 256 $EPOCHS
