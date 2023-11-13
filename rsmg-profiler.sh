@@ -12,4 +12,4 @@ sed -i 's/sudo//g' profile.sh
 cat makefile | grep "CUFLAGS+="
 make cleanall
 make AVX=avx2 FPTYPE=d HELINL=0
-sh profile.sh -p $BLOCK_NUMBER 256 $EPOCHS
+sh profile.sh -nogui -p $BLOCK_NUMBER 256 $EPOCHS

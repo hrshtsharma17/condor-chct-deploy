@@ -1,9 +1,10 @@
 universe = vanilla
 executable = rsmg-profiler.sh
 transfer_executable = True
-output = raw_outputs_multi/output-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)-$(Cluster).$(Process)
+output = raw_outputs_profiler/output-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)-$(Cluster).$(Process)
 error = raw_errors/error-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
 log = raw_logs/log-$(BLOCK_NUMBER)-$(MAX_REG_COUNT)-$(EPOCHS)
++InteractiveJob = true
 +WantGPULab = true
 +GPUJobLength = "short"
 
@@ -15,6 +16,7 @@ request_disk = 5GB
 
 +SingularityImage = "nvidia-nsight-main.sif"
 Requirements = HasSingularity
+Requirements = Machine == "gpulab2004.chtc.wisc.edu" && OpSysMajorVer == 8
 Requirements = GPUs_DeviceName == "NVIDIA A100-SXM4-40GB"
 should_transfer_files = yes
 transfer_input_files = nvidia-nsight-main.sif
